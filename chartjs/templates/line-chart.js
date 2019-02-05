@@ -2,44 +2,68 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var socket = io();
 
     socket.on('msg', function(msg){
-        //$('#messages').append($('<li>').text(msg));
         console.log(msg);
+
+        // create chart dataset
+        var dataset = {
+            label: msg.payload.channel,                        
+            backgroundColor: msg.payload.color,
+            borderColor: msg.payload.color,
+            data: [],
+            fill: false
+        };
+
+        myChart.config.data.labels = [];
+        myChart.config.data.datasets = [];
+
+        msg.payload.dataset.forEach(item => {
+            myChart.config.data.labels.push(item.x);
+            dataset.data.push(item.y);
+        });
+                
+        myChart.config.data.datasets.push(dataset);
+
+        // refresh chart
+        myChart.update();
       });
 
     //var ctx = document.getElementById("myChart");
     var ctx = $("#myChart");
 
     var myChart = new Chart(ctx, {
-        type: 'bar',
+        type: 'line',
         data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
+            labels: [],
+            datasets: []
         },
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+                display: true,
+                text: 'Line Chart'
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: true
+            },
             scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Item'
+                    }
+                }],
                 yAxes: [{
-                    ticks: {
-                        beginAtZero:true
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Value'
                     }
                 }]
             }

@@ -55,7 +55,7 @@ module.exports = function(RED) {
         
         node.on('input', function(msg) {          
             // publish node-red payload to template throw socker.io conenction
-            io.emit('msg', { msg: msg });
+            io.emit('msg', msg);
         });
     }
 
