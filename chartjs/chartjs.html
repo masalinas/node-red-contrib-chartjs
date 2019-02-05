@@ -1,0 +1,47 @@
+<script type="text/x-red" data-template-name="chartjs">
+  <div class="form-row">
+    <label for="node-input-name"><i class="fa"></i>Name</label>
+    <input type="text" id="node-input-name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-path"><i class="fa"></i>Path</label>
+    <input type="text" id="node-input-path" placeholder="Graph path">
+  </div>  
+</script>
+
+<script type="text/x-red" data-help-name="chartjs">
+  <p>Inputs</h3>
+  <dl class="message-properties">
+    <dt>Path<span class="property-type">graph path</span></dt>
+    <dd>This property sets the graph path.</dd>
+  </dl>
+  <h3>Outputs</h3>
+  <dl class="message-properties">
+     <dt>payload<span class="property-type">object</span></dt>
+     <dd>The payload result object.</dd>
+  </dl>
+  <h3>Error</h3>
+  <dl class="message-properties">
+     <dt>error<span class="property-type">string</span></dt>
+     <dd>The error string.</dd>
+  </dl>
+  <h3>Details</h3>
+  <p></p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType("chartjs", {
+        category:'Charts',
+        defaults: {
+            name: {value: ''},
+            path: {value: '/graph'},
+        },
+        outputs: 1,
+        inputs: 1,
+        label: function() {
+            return this.name || "Chartjs";
+        },
+        color: 'orange',
+        icon: 'graph.png'
+    });
+</script>
