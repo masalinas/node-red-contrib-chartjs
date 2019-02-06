@@ -5,16 +5,40 @@
   </div>
   <div class="form-row">
     <label for="node-input-path"><i class="fa"></i>Path</label>
-    <input type="text" id="node-input-path" placeholder="Graph path">
-  </div>  
+    <input type="text" id="node-input-path" placeholder="Chart path">
+  </div>
+  <div class="form-row">
+    <label for="node-input-charttitle"><i class="fa"></i>Title</label>
+    <input type="text" id="node-input-charttitle" placeholder="Chart title">
+  </div>
+  <div class="form-row">
+    <label for="node-input-xaxis"><i class="fa"></i>X Axis</label>
+    <input type="text" id="node-input-xaxis" placeholder="Chart X Axis name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-yaxis"><i class="fa"></i>Y Axis</label>
+    <input type="text" id="node-input-yaxis" placeholder="Chart Y Axis name">
+  </div>           
 </script>
 
 <script type="text/x-red" data-help-name="chartjs">
   <p>Inputs</h3>
   <dl class="message-properties">
-    <dt>Path<span class="property-type">chart path</span></dt>
+    <dt>Path<span class="property-type">Chart path</span></dt>
     <dd>This property sets the chart path.</dd>
   </dl>
+  <dl class="message-properties">
+    <dt>Path<span class="property-type">Chart title</span></dt>
+    <dd>This property sets the chart title.</dd>
+  </dl>
+  <dl class="message-properties">
+    <dt>Path<span class="property-type">X Axis</span></dt>
+    <dd>This property sets the X chart name.</dd>
+  </dl> 
+  <dl class="message-properties">
+    <dt>Path<span class="property-type">Y Axis</span></dt>
+    <dd>This property sets the Y chart name.</dd>
+  </dl>      
   <h3>Outputs</h3>
   <dl class="message-properties">
      <dt>payload<span class="property-type">object</span></dt>
@@ -35,6 +59,9 @@
         defaults: {
             name: {value: ''},
             path: {value: 'charts'},
+            charttitle: {value: 'Chart title'},
+            xaxis: {value: 'Item'},
+            yaxis: {value: 'Value'}
         },
         outputs: 1,
         inputs: 1,

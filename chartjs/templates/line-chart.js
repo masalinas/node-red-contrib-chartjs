@@ -3,30 +3,42 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     var topic = window.location.pathname.replace('/', '');
 
-    socket.on(topic, function(msg){
-        console.log(msg);
+    socket.on(topic, function(red){
+        console.log(red);
 
-        // create chart dataset
-        var dataset = {
-            label: msg.payload.channel,                        
-            backgroundColor: msg.payload.color,
-            borderColor: msg.payload.color,
-            data: [],
-            fill: false
-        };
+        // update chart dataset
+        if (red.msg !== undefined) {
+            var dataset = {
+                label: red.msg.payload.channel,                        
+                backgroundColor: red.msg.payload.color,
+                borderColor: red.msg.payload.color,
+                data: [],
+                fill: false
+            };
 
-        myChart.config.data.labels = [];
-        myChart.config.data.datasets = [];
+            myChart.config.data.labels = [];
+            myChart.config.data.datasets = [];
 
-        msg.payload.dataset.forEach(item => {
-            myChart.config.data.labels.push(item.x);
-            dataset.data.push(item.y);
-        });
-                
-        myChart.config.data.datasets.push(dataset);
+            red.msg.payload.dataset.forEach(item => {
+                myChart.config.data.labels.push(item.x);
+                dataset.data.push(item.y);
+            });
+                    
+            myChart.config.data.datasets.push(dataset);
 
-        // refresh chart
-        myChart.update();
+            // refresh chart
+            myChart.update();
+        }
+
+        // update chart configuration
+        if (red.config !== undefined) {            
+            myChart.config.options.title.text = red.config.title;
+            myChart.config.options.scales['xAxes'][0].scaleLabel.labelString = red.config.xaxis;
+            myChart.config.options.scales['yAxes'][0].scaleLabel.labelString = red.config.yaxis;
+
+            // refresh chart
+            myChart.update();
+        }
       });
 
     //var ctx = document.getElementById("myChart");

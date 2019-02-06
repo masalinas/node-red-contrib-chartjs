@@ -112,11 +112,21 @@ module.exports = function(RED) {
         // update expressJS route and update node path
         updatePath(node, config.path);
 
+        // publish chart configurations        
+        var config = {title: config.charttitle, xaxis: config.xaxis, yaxis : config.yaxis};
+        var red = {config: config};
+
+        var item = getPath(node.id);
+        io.emit(item.path, red);
+
+        // trigger on flow input
         node.on('input', function(msg) {   
             var item = getPath(node.id);
 
-            // publish node-red payload to template throw socker.io conenction
-            io.emit(item.path, msg);
+            // publish chart input message
+            var red = {msg: msg};
+
+            io.emit(item.path, red);
 
             // return payload
             node.send(msg);
