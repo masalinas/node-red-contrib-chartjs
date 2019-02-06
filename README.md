@@ -4,7 +4,12 @@ Chart.js Node-RED node
 ![Charts RED Dashboards](https://user-images.githubusercontent.com/1216181/52352347-b4195f00-2a2c-11e9-9f15-ef9f1b781108.png)
 
 ## Description
-This node permit to use the **Line chart** from [Chart.js](https://www.chartjs.org/) from Node-RED. The objective is create a new node-red path for each chart created, this path could be configured and updated at runtime. Right now **only the line chart** of Chart.js is was implemented. In the future I will be implement the rest of the charts of this library and include serveral channels on the same chart.
+This node permit to use the **Line chart** from [Chart.js](https://www.chartjs.org/) from Node-RED. The objective is create a new node-red path for each chart created, this path could be configured and updated at runtime. Right now **only the line chart** of Chart.js was implemented. In the future will implement the rest of the charts of this library and include serveral channels on the same chart.
+
+## Installation
+```
+npm install node-red-contrib-chartjs --save
+```
 
 ## Chart configuration
 The **Chart attributes** are:
