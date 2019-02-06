@@ -30,6 +30,19 @@ module.exports = function(RED) {
     app.use('/', serveStatic(path.join(__dirname, "templates")));
 
     // ExpressJS and node path API
+    function initPaths() {
+        paths.forEach(function(path) {
+            path.active = false;
+        });
+    }
+
+    function resumePaths() {
+        paths.forEach(function(path) {
+            if (path.active == false)
+                removePath(path.id);
+        });
+    }
+
     function getPath(id) {
         return paths.find(path => path.id === id)
     }
@@ -52,8 +65,17 @@ module.exports = function(RED) {
         return item;
     }
     
+    function removePath(id) {
+        var index = paths.findIndex(path => path.id == id);
+
+        if (index !== -1)
+            paths.splice(index, 1);
+                
+        return index;
+    }
+
     function addPath(id, path) {
-        var item = {id: id, path: path};
+        var item = {id: id, path: path, active: true};
 
         paths.push(item);
 
@@ -89,22 +111,26 @@ module.exports = function(RED) {
 
         var node = this;
 
+        // get global context
+        var globalContext = node.context().global;
+        globalContext.paths = [];
+
         // load default template: line.chart
         var template = fs.readFileSync(__dirname + '/templates/line-chart.html', 'utf8');
 
         // configure chart node-red path
         if (RED.settings.httpNodeRoot !== false) {
-            this.errorHandler = function(err, req, res, next) {
+            node.errorHandler = function(err, req, res, next) {
                 node.warn(err);
 
                 res.send(500);
             };
 
-            this.callback = function(req, res) {
+            node.callback = function(req, res) {
                 res.end(template);
             } 
 
-            this.corsHandler = function(req, res, next) { 
+            node.corsHandler = function(req, res, next) { 
                 next(); 
             }               
         }  
