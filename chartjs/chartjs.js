@@ -3,6 +3,9 @@ var path = require('path');
 var serveStatic = require('serve-static');
 var cors = require('cors');
 
+var DEF_PATH = 'charts';
+var paths = [];
+
 module.exports = function(RED) {
     "use strict"
 
@@ -10,7 +13,7 @@ module.exports = function(RED) {
     var app = RED.httpNode;
     var server = RED.server;
     var settings = RED.settings;
-
+     
     // configure socker.io server
     var io = require('socket.io')(server);
     
@@ -25,6 +28,61 @@ module.exports = function(RED) {
     // set static paths
     app.use('/', serveStatic(path.join(__dirname, "js")));
     app.use('/', serveStatic(path.join(__dirname, "templates")));
+
+    // ExpressJS and node path API
+    function getPath(id) {
+        return paths.find(path => path.id === id)
+    }
+
+    function updatePath(node, path) {
+        var item = getPath(node.id);
+
+        if (item !== undefined) {
+            removeRoute(item.path);
+
+            addRoute('/' + path, node.corsHandler, node.callback, node.errorHandler);
+
+            item.path = path;
+        } else {
+            addRoute('/' + path, node.corsHandler, node.callback, node.errorHandler);
+            
+            addPath(node.id, path);
+        }
+
+        return item;
+    }
+    
+    function addPath(id, path) {
+        var item = {id: id, path: path};
+
+        paths.push(item);
+
+        return item;
+    }
+
+    function getRoute(path) {
+        var route = null;
+
+        app._router.stack.forEach(function(item) {
+            if (item.route !== undefined && item.route.path == path)
+                route = item.route;                
+        });
+
+        return route;
+    }
+
+    function removeRoute(path) {
+        var index = app._router.stack.findIndex(item => item.route !== undefined && item.route.path == '/' + path);
+
+        if (index !== -1)
+            app._router.stack.splice(index, 1);
+                
+        return index;
+    }
+
+    function addRoute(path, corsHandler, callback, errorHandler) {
+        app.get(path, corsHandler, callback, errorHandler);
+    }
 
     function chartjs(config) {        
         RED.nodes.createNode(this, config);
@@ -51,11 +109,17 @@ module.exports = function(RED) {
             }               
         }  
 
-        RED.httpNode.get(config.path, this.corsHandler, this.callback, this.errorHandler);
-        
-        node.on('input', function(msg) {          
+        // update expressJS route and update node path
+        updatePath(node, config.path);
+
+        node.on('input', function(msg) {   
+            var item = getPath(node.id);
+
             // publish node-red payload to template throw socker.io conenction
-            io.emit('msg', msg);
+            io.emit(item.path, msg);
+
+            // return payload
+            node.send(msg);
         });
     }
 

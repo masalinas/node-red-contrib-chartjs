@@ -1,7 +1,9 @@
 document.addEventListener("DOMContentLoaded", function(event) {
     var socket = io();
 
-    socket.on('msg', function(msg){
+    var topic = window.location.pathname.replace('/', '');
+
+    socket.on(topic, function(msg){
         console.log(msg);
 
         // create chart dataset
