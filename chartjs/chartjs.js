@@ -3,9 +3,6 @@ var path = require('path');
 var serveStatic = require('serve-static');
 var cors = require('cors');
 
-var DEF_PATH = 'charts';
-var paths = [];
-
 module.exports = function(RED) {
     "use strict"
 
@@ -13,8 +10,10 @@ module.exports = function(RED) {
     var app = RED.httpNode;
     var server = RED.server;
     var settings = RED.settings;
-     
-    // configure socker.io server
+
+    var paths = [];
+
+    // configure socket.io server
     var io = require('socket.io')(server);
     
     io.on('connection', function(socket){
@@ -25,7 +24,7 @@ module.exports = function(RED) {
         });
     });
 
-    // set static paths
+    // add static paths
     app.use('/', serveStatic(path.join(__dirname, "js")));
     app.use('/', serveStatic(path.join(__dirname, "templates")));
 
@@ -82,17 +81,6 @@ module.exports = function(RED) {
         return item;
     }
 
-    function getRoute(path) {
-        var route = null;
-
-        app._router.stack.forEach(function(item) {
-            if (item.route !== undefined && item.route.path == path)
-                route = item.route;                
-        });
-
-        return route;
-    }
-
     function removeRoute(path) {
         var index = app._router.stack.findIndex(item => item.route !== undefined && item.route.path == '/' + path);
 
@@ -110,10 +98,6 @@ module.exports = function(RED) {
         RED.nodes.createNode(this, config);
 
         var node = this;
-
-        // get global context
-        var globalContext = node.context().global;
-        globalContext.paths = [];
 
         // load default template: line.chart
         var template = fs.readFileSync(__dirname + '/templates/line-chart.html', 'utf8');
