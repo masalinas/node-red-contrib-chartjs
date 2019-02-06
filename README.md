@@ -68,3 +68,6 @@ Dataset Example:
 * [socker.io-client](https://github.com/socketio/socket.io-client): socket.io client side
 * [jquery](https://github.com/jquery/jquery): multipurpose javascript library
 * [Chart.js](https://www.chartjs.org/): Simple yet flexible JavaScript charting for designers & developers
+
+## Example
+Under example folder you have all json flows to be imported in your node-red instance and test the node.
