@@ -94,7 +94,7 @@ module.exports = function(RED) {
         app.get(path, corsHandler, callback, errorHandler);
     }
 
-    function chartjs(config) {        
+    function chartjsLine(config) {        
         RED.nodes.createNode(this, config);
 
         var node = this;
@@ -143,5 +143,5 @@ module.exports = function(RED) {
         });
     }
 
-    RED.nodes.registerType('chartjs', chartjs);    
+    RED.nodes.registerType('chartjs-line', chartjsLine);    
 };

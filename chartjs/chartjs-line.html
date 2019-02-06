@@ -1,4 +1,4 @@
-<script type="text/x-red" data-template-name="chartjs">
+<script type="text/x-red" data-template-name="chartjs-line">
   <div class="form-row">
     <label for="node-input-name"><i class="fa"></i>Name</label>
     <input type="text" id="node-input-name">
@@ -21,7 +21,7 @@
   </div>           
 </script>
 
-<script type="text/x-red" data-help-name="chartjs">
+<script type="text/x-red" data-help-name="chartjs-line">
   <p>Inputs</h3>
   <dl class="message-properties">
     <dt>Path<span class="property-type">string</span></dt>
@@ -54,7 +54,7 @@
 </script>
 
 <script type="text/javascript">
-    RED.nodes.registerType("chartjs", {
+    RED.nodes.registerType("chartjs-line", {
         category:'Charts',
         defaults: {
             name: {value: ''},
@@ -66,7 +66,7 @@
         outputs: 1,
         inputs: 1,
         label: function() {
-            return this.name || "Chartjs";
+            return this.name || "Chartjs Line";
         },
         color: 'orange',
         icon: 'chart.png'
