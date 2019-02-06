@@ -3,7 +3,57 @@ Chart.js Node-RED node
 
 ![Charts RED Dashboards](https://user-images.githubusercontent.com/1216181/52352347-b4195f00-2a2c-11e9-9f15-ef9f1b781108.png)
 
-## dependencies
+## Description
+This node permit to use the **Line chart** from [Chart.js](https://www.chartjs.org/) from Node-RED. The objective is create a new node-red path for each chart created, this path could be configured and updated at runtime. Right now **only the line chart** of Chart.js is was implemented. In the future I will be implement the rest of the charts of this library and include serveral channels on the same chart.
+
+## Chart configuration
+The **Chart attributes** are:
+* Path: The Chart path to be access
+* Tittle: The tittle of the chart
+* X Axis: The X axis name
+* Y Axis: The Y axis name
+* Payloas: The dataset to be drawed
+
+The **Chart Payload attributes** are:
+* channel: channel label legend name
+* color: color of the chart line
+* dataset: dataset array. 
+
+The **Payload attributes** are:
+* x: x axis dataset value
+* y: y axis dataset value
+
+Dataset Example:
+```
+{
+    "channel": "TP01",
+    "color": "Red",
+    "dataset": [
+        {
+            "x": 1,
+            "y": 10
+        },
+        {
+            "x": 2,
+            "y": 8
+        },
+        {
+            "x": 3,
+            "y": 15
+        },
+        {
+            "x": 4,
+            "y": 10
+        },
+        {
+            "x": 5,
+            "y": -2
+        }
+    ]
+}
+```
+
+## Dependencies
 ### Server side
 * [socker.io](https://github.com/socketio/socket.io): socket.io server side
 * [serve-static](https://github.com/expressjs/serve-static): Serve static files
