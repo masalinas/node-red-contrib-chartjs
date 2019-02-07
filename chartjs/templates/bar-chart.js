@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var topic = window.location.pathname.replace('/', '');
 
     var socket = io();
-
+    
     socket.on(topic, function(red){
         console.log(red);
 
@@ -31,20 +31,26 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
 
         // update chart configuration
-        if (red.config !== undefined) {            
+        if (red.config !== undefined) {   
+            config.type = red.config.type;
             config.options.title.text = red.config.title;
             config.options.scales['xAxes'][0].scaleLabel.labelString = red.config.xaxis;
             config.options.scales['yAxes'][0].scaleLabel.labelString = red.config.yaxis;
 
             // refresh chart
-            chart.update();
+            //chart.update();            
+
+            chart.destroy();
+            chart = new Chart(ctx, config);
         }
       });
 
-    var ctx = $("#lineChart");
+    var canvas = document.getElementById("barChart");
+    var ctx = canvas.getContext('2d');
+    //var ctx = $("#barChart");
 
     var config = {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: [],
             datasets: []
@@ -54,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             maintainAspectRatio: false,
             title: {
                 display: true,
-                text: 'Line Chart'
+                text: 'Bar Chart'
             },
             tooltips: {
                 mode: 'index',
@@ -82,6 +88,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
             }
         }
     };
+
+    // Global Chart Options
+    Chart.defaults.global.defaultFontColor = 'grey';
+    Chart.defaults.global.defaultFontSize = 16;
 
     var chart = new Chart(ctx, config);	
 });

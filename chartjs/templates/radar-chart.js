@@ -41,10 +41,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
       });
 
-    var ctx = $("#lineChart");
+    var ctx = $("#radarChart");
 
     var config = {
-        type: 'line',
+        type: 'radar',
         data: {
             labels: [],
             datasets: []
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             maintainAspectRatio: false,
             title: {
                 display: true,
-                text: 'Line Chart'
+                text: 'Radar Chart'
             },
             tooltips: {
                 mode: 'index',

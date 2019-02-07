@@ -94,7 +94,7 @@ module.exports = function(RED) {
         app.get(path, corsHandler, callback, errorHandler);
     }
 
-    function chartjsLine(config) {        
+    function chartjsLine(config) {
         RED.nodes.createNode(this, config);
 
         var node = this;
@@ -143,5 +143,105 @@ module.exports = function(RED) {
         });
     }
 
-    RED.nodes.registerType('chartjs-line', chartjsLine);    
+    function chartjsBar(config) {
+        RED.nodes.createNode(this, config);
+
+        var node = this;
+
+        // load default template: line.chart
+        var template = fs.readFileSync(__dirname + '/templates/bar-chart.html', 'utf8');
+
+        // configure chart node-red path
+        if (RED.settings.httpNodeRoot !== false) {
+            node.errorHandler = function(err, req, res, next) {
+                node.warn(err);
+
+                res.send(500);
+            };
+
+            node.callback = function(req, res) {
+                res.end(template);
+            } 
+
+            node.corsHandler = function(req, res, next) { 
+                next(); 
+            }               
+        }  
+
+        // update expressJS route and update node path
+        updatePath(node, config.path);
+
+        // publish chart configurations        
+        var config = {type: config.charttype, title: config.charttitle, xaxis: config.xaxis, yaxis : config.yaxis};
+        var red = {config: config};
+
+        var item = getPath(node.id);
+        io.emit(item.path, red);
+
+        // trigger on flow input
+        node.on('input', function(msg) {   
+            var item = getPath(node.id);
+
+            // publish chart input message
+            var red = {msg: msg};
+
+            io.emit(item.path, red);
+
+            // return payload
+            node.send(msg);
+        });
+    }
+
+    function chartjsRadar(config) {
+        RED.nodes.createNode(this, config);
+
+        var node = this;
+
+        // load default template: line.chart
+        var template = fs.readFileSync(__dirname + '/templates/radar-chart.html', 'utf8');
+
+        // configure chart node-red path
+        if (RED.settings.httpNodeRoot !== false) {
+            node.errorHandler = function(err, req, res, next) {
+                node.warn(err);
+
+                res.send(500);
+            };
+
+            node.callback = function(req, res) {
+                res.end(template);
+            } 
+
+            node.corsHandler = function(req, res, next) { 
+                next(); 
+            }               
+        }  
+
+        // update expressJS route and update node path
+        updatePath(node, config.path);
+
+        // publish chart configurations        
+        var config = {title: config.charttitle, xaxis: config.xaxis, yaxis : config.yaxis};
+        var red = {config: config};
+
+        var item = getPath(node.id);
+        io.emit(item.path, red);
+
+        // trigger on flow input
+        node.on('input', function(msg) {   
+            var item = getPath(node.id);
+
+            // publish chart input message
+            var red = {msg: msg};
+
+            io.emit(item.path, red);
+
+            // return payload
+            node.send(msg);
+        });
+    }
+
+    RED.nodes.registerType('chartjs-line', chartjsLine);
+    RED.nodes.registerType('chartjs-bar', chartjsBar);
+    RED.nodes.registerType('chartjs-radar', chartjsRadar);    
 };
