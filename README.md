@@ -45,11 +45,15 @@ npm install node-red-contrib-chartjs --save
 
 ## Chart configuration
 The **Chart attributes** are:
-* Path: The Chart path to be access
+* Path: The Chart Url to be access. An example where path is TP01 could be:
+```
+http://localhost:1880/TP01
+```
+
 * Tittle: The tittle of the chart
 * X Axis: The X axis name
 * Y Axis: The Y axis name
-* Payloas: The dataset to be drawed
+* Payload: The chart dataset
 
 The **Chart Payload attributes** are:
 * channel: channel label legend name
