@@ -143,13 +143,13 @@ module.exports = function(RED) {
         });
     }
 
-    function chartjsBar(config) {
+    function chartjsVerticalBar(config) {
         RED.nodes.createNode(this, config);
 
         var node = this;
 
         // load default template: line.chart
-        var template = fs.readFileSync(__dirname + '/templates/bar-chart.html', 'utf8');
+        var template = fs.readFileSync(__dirname + '/templates/vertical-bar-chart.html', 'utf8');
 
         // configure chart node-red path
         if (RED.settings.httpNodeRoot !== false) {
@@ -242,6 +242,6 @@ module.exports = function(RED) {
     }
 
     RED.nodes.registerType('chartjs-line', chartjsLine);
-    RED.nodes.registerType('chartjs-bar', chartjsBar);
+    RED.nodes.registerType('chartjs-vertical-bar', chartjsVerticalBar);
     RED.nodes.registerType('chartjs-radar', chartjsRadar);    
 };

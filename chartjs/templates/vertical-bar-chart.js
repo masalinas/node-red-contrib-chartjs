@@ -38,8 +38,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
             config.options.scales['yAxes'][0].scaleLabel.labelString = red.config.yaxis;
 
             // refresh chart
-            //chart.update();            
-
             chart.destroy();
             chart = new Chart(ctx, config);
         }

@@ -70,12 +70,12 @@
             return this.name || "Line Chartjs";
         },
         color: 'orange',
-        icon: 'chart.png'
+        icon: 'line_chart.png'
     });
 </script>
 
-<!-- Chart.js: Bar Chart-->
-<script type="text/x-red" data-template-name="chartjs-bar">
+<!-- Chart.js: Vertical Bar Chart-->
+<script type="text/x-red" data-template-name="chartjs-vertical-bar">
   <div class="form-row">
     <label for="node-input-name"><i class="fa"></i>Name</label>
     <input type="text" id="node-input-name">
@@ -84,13 +84,6 @@
     <label for="node-input-path"><i class="fa"></i>Path</label>
     <input type="text" id="node-input-path" placeholder="Chart path">
   </div>
-  <div class="form-row">
-    <label for="node-input-charttype"><i class="fa"></i>Type</label>
-    <select type="text" id="node-input-charttype">
-      <option value="bar">Vertical</option>
-      <option value="radar">Radar</option>
-    </select>
-  </div>  
   <div class="form-row">
     <label for="node-input-charttitle"><i class="fa"></i>Title</label>
     <input type="text" id="node-input-charttitle" placeholder="Chart title">
@@ -105,7 +98,7 @@
   </div>           
 </script>
 
-<script type="text/x-red" data-help-name="chartjs-bar">
+<script type="text/x-red" data-help-name="chartjs-vertical-bar">
   <p>Inputs</h3>
   <dl class="message-properties">
     <dt>Path<span class="property-type">string</span></dt>
@@ -138,12 +131,11 @@
 </script>
 
 <script type="text/javascript">
-    RED.nodes.registerType("chartjs-bar", {
+    RED.nodes.registerType("chartjs-vertical-bar", {
         category:'Charts',
         defaults: {
             name: {value: ''},
             path: {value: 'charts'},
-            charttype: {value: 'bar'},
             charttitle: {value: 'Chart title'},
             xaxis: {value: 'Item'},
             yaxis: {value: 'Value'}
@@ -151,10 +143,10 @@
         outputs: 1,
         inputs: 1,
         label: function() {
-            return this.name || "Bar Chartjs";
+            return this.name || "Vertical Bar Chartjs";
         },
         color: 'orange',
-        icon: 'chart.png'
+        icon: 'bar_vertical_chart.png'
     });
 </script>
 
@@ -230,6 +222,6 @@
             return this.name || "Line Chartjs";
         },
         color: 'orange',
-        icon: 'chart.png'
+        icon: 'radar_chart.png'
     });
 </script>
