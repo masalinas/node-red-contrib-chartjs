@@ -12,7 +12,11 @@ npm install node-red-contrib-chartjs --save
 ```
 ## Chart implemented
 * Line Chart
-* Bar Chart
+* Vertical Bar Chart
+* Horizontal Bar Chart
+* Pie Chart
+* Doughnut Chart
+* Bubble Chart
 * Radar Chart
 
 ## Chart configuration
