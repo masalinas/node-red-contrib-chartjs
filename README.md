@@ -50,15 +50,15 @@ The **Chart attributes** are:
 http://localhost:1880/TP01
 ```
 
-* Tittle: The tittle of the chart
-* X Axis: The X axis name
-* Y Axis: The Y axis name
-* Payload: The chart dataset
+* Tittle: The chart title
+* X Axis: The X axis label
+* Y Axis: The Y axis label
+* Payload: The chart dataset object
 
 The **Chart Payload attributes** are:
-* channel: channel label legend name
-* color: color of the chart line
-* dataset: dataset array. 
+* channel: The channel legend
+* color: The chart color line
+* dataset: The chart dataset
 
 The **Payload attributes** are:
 * x: x axis dataset value
