@@ -37,7 +37,8 @@ The **Payload attributes** are:
 * x: x axis dataset value
 * y: y axis dataset value
 
-Dataset Example:
+Check the node help to know the Dataset structure for each chart
+A Line Chart dataset could be like this:
 ```
 {
     "channel": "TP01",
