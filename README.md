@@ -1,5 +1,5 @@
 # node-red-contrib-chartjs
-Chart.js Node-RED node
+Chart.js Node-RED nodes
 
 ![Charts RED Dashboards](https://user-images.githubusercontent.com/1216181/52432061-cddca400-2b09-11e9-9b83-f6cdae1a75b5.png)
 
