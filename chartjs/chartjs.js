@@ -172,7 +172,7 @@ module.exports = function(RED) {
         updatePath(node, config.path);
 
         // publish chart configurations        
-        var config = {type: config.charttype, title: config.charttitle, xaxis: config.xaxis, yaxis : config.yaxis};
+        var config = {title: config.charttitle, xaxis: config.xaxis, yaxis : config.yaxis};
         var red = {config: config};
 
         var item = getPath(node.id);
@@ -221,7 +221,7 @@ module.exports = function(RED) {
         updatePath(node, config.path);
 
         // publish chart configurations        
-        var config = {type: config.charttype, title: config.charttitle, xaxis: config.xaxis, yaxis : config.yaxis};
+        var config = {title: config.charttitle, xaxis: config.xaxis, yaxis : config.yaxis};
         var red = {config: config};
 
         var item = getPath(node.id);

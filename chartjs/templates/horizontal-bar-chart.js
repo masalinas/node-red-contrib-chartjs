@@ -31,8 +31,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
 
         // update chart configuration
-        if (red.config !== undefined) {   
-            config.type = red.config.type;
+        if (red.config !== undefined) {
             config.options.title.text = red.config.title;
             config.options.scales['xAxes'][0].scaleLabel.labelString = red.config.xaxis;
             config.options.scales['yAxes'][0].scaleLabel.labelString = red.config.yaxis;
@@ -76,6 +75,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 }],
                 yAxes: [{
                     display: true,
+                    ticks: {
+                        beginAtZero: true
+                    },                    
                     scaleLabel: {
                         display: true,
                         labelString: 'Value'

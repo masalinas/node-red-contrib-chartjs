@@ -74,6 +74,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 }],
                 yAxes: [{
                     display: true,
+                    ticks: {
+                        beginAtZero: true
+                    },                     
                     scaleLabel: {
                         display: true,
                         labelString: 'Value'
