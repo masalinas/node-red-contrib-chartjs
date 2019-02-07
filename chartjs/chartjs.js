@@ -99,7 +99,7 @@ module.exports = function(RED) {
 
         var node = this;
 
-        // load default template: line.chart
+        // load default template
         var template = fs.readFileSync(__dirname + '/templates/line-chart.html', 'utf8');
 
         // configure chart node-red path
@@ -148,7 +148,7 @@ module.exports = function(RED) {
 
         var node = this;
 
-        // load default template: line.chart
+        // load default template
         var template = fs.readFileSync(__dirname + '/templates/vertical-bar-chart.html', 'utf8');
 
         // configure chart node-red path
@@ -197,8 +197,57 @@ module.exports = function(RED) {
 
         var node = this;
 
-        // load default template: line.chart
+        // load default template
         var template = fs.readFileSync(__dirname + '/templates/horizontal-bar-chart.html', 'utf8');
+
+        // configure chart node-red path
+        if (RED.settings.httpNodeRoot !== false) {
+            node.errorHandler = function(err, req, res, next) {
+                node.warn(err);
+
+                res.send(500);
+            };
+
+            node.callback = function(req, res) {
+                res.end(template);
+            } 
+
+            node.corsHandler = function(req, res, next) { 
+                next(); 
+            }               
+        }  
+
+        // update expressJS route and update node path
+        updatePath(node, config.path);
+
+        // publish chart configurations        
+        var config = {type: config.charttype, title: config.charttitle, xaxis: config.xaxis, yaxis : config.yaxis};
+        var red = {config: config};
+
+        var item = getPath(node.id);
+        io.emit(item.path, red);
+
+        // trigger on flow input
+        node.on('input', function(msg) {   
+            var item = getPath(node.id);
+
+            // publish chart input message
+            var red = {msg: msg};
+
+            io.emit(item.path, red);
+
+            // return payload
+            node.send(msg);
+        });
+    }
+
+    function chartjsPie(config) {
+        RED.nodes.createNode(this, config);
+
+        var node = this;
+
+        // load default template
+        var template = fs.readFileSync(__dirname + '/templates/pie-chart.html', 'utf8');
 
         // configure chart node-red path
         if (RED.settings.httpNodeRoot !== false) {
@@ -293,5 +342,6 @@ module.exports = function(RED) {
     RED.nodes.registerType('chartjs-line', chartjsLine);
     RED.nodes.registerType('chartjs-vertical-bar', chartjsVerticalBar);
     RED.nodes.registerType('chartjs-horizontal-bar', chartjsHorizontalBar);
+    RED.nodes.registerType('chartjs-pie', chartjsPie);
     RED.nodes.registerType('chartjs-radar', chartjsRadar);    
 };
