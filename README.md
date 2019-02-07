@@ -49,28 +49,28 @@ Check the node help to know the Dataset structure for each chart
 A Line Chart dataset could be like this:
 ```
 {
-    "channel": "TP01",
-    "color": "Red",
+    "channel": "Population",
+    "color": "Green",
     "dataset": [
         {
-            "x": 1,
-            "y": 10
+            "x": "Europe",
+            "y": 741
         },
         {
-            "x": 2,
-            "y": 8
+            "x": "Australia",
+            "y": 24
         },
         {
-            "x": 3,
-            "y": 15
+            "x": "Africa",
+            "y": 1.2
         },
         {
-            "x": 4,
-            "y": 10
+            "x": "America",
+            "y": 325
         },
         {
-            "x": 5,
-            "y": -2
+            "x": "Asia",
+            "y": 4.4
         }
     ]
 }
