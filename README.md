@@ -16,6 +16,7 @@ npm install node-red-contrib-chartjs --save
 * Horizontal Bar Chart
 * Pie Chart
 * Doughnut Chart
+* Polar Area Chart
 * Bubble Chart
 * Radar Chart
 
