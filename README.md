@@ -12,13 +12,21 @@ npm install node-red-contrib-chartjs --save
 ```
 ## Chart implemented
 * Line Chart
+![line_chart](https://user-images.githubusercontent.com/1216181/52431585-ccf74280-2b08-11e9-918d-5866e2b16f34.png)
 * Vertical Bar Chart
+![vertical_bar_chart](https://user-images.githubusercontent.com/1216181/52431635-e8fae400-2b08-11e9-9277-200e801e92ac.png)
 * Horizontal Bar Chart
+![horizontal_chart](https://user-images.githubusercontent.com/1216181/52431660-f44e0f80-2b08-11e9-8f2d-8dad3c613174.png)
 * Pie Chart
+![pie_chart](https://user-images.githubusercontent.com/1216181/52431693-0760df80-2b09-11e9-9908-618a1de91cc3.png)
 * Doughnut Chart
+![doughnut_chart](https://user-images.githubusercontent.com/1216181/52431731-16479200-2b09-11e9-8d75-cbdfb14e9be8.png)
 * Polar Area Chart
+![polar_chart](https://user-images.githubusercontent.com/1216181/52431755-28c1cb80-2b09-11e9-8b7e-f8a589be254f.png)
 * Bubble Chart
+![bubble_chart](https://user-images.githubusercontent.com/1216181/52431779-35462400-2b09-11e9-8ea6-83b6fabf46f8.png)
 * Radar Chart
+![radar_chart](https://user-images.githubusercontent.com/1216181/52431820-47c05d80-2b09-11e9-9709-49fec1643e2e.png)
 
 ## Chart configuration
 The **Chart attributes** are:
