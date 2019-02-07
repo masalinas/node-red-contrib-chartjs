@@ -83,5 +83,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     };
 
+    // Global Chart Options
+    Chart.defaults.global.defaultFontColor = 'grey';
+    Chart.defaults.global.defaultFontSize = 16;
+
     var chart = new Chart(ctx, config);	
 });
