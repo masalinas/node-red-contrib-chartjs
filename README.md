@@ -1,7 +1,7 @@
 # node-red-contrib-chartjs
 Chart.js Node-RED node
 
-![Charts RED Dashboards]![red_component](https://user-images.githubusercontent.com/1216181/52432061-cddca400-2b09-11e9-9b83-f6cdae1a75b5.png)
+![Charts RED Dashboards][red_component](https://user-images.githubusercontent.com/1216181/52432061-cddca400-2b09-11e9-9b83-f6cdae1a75b5.png)
 
 ## Description
 This node permit to use **Charts** from [Chart.js](https://www.chartjs.org/) from Node-RED. The objective is create a new node-red path for each chart created, this path could be configured and updated at runtime.
