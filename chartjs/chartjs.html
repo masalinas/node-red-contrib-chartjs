@@ -150,6 +150,82 @@
     });
 </script>
 
+<!-- Chart.js: Horizontal Bar Chart-->
+<script type="text/x-red" data-template-name="chartjs-horizontal-bar">
+  <div class="form-row">
+    <label for="node-input-name"><i class="fa"></i>Name</label>
+    <input type="text" id="node-input-name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-path"><i class="fa"></i>Path</label>
+    <input type="text" id="node-input-path" placeholder="Chart path">
+  </div>
+  <div class="form-row">
+    <label for="node-input-charttitle"><i class="fa"></i>Title</label>
+    <input type="text" id="node-input-charttitle" placeholder="Chart title">
+  </div>
+  <div class="form-row">
+    <label for="node-input-xaxis"><i class="fa"></i>X Axis</label>
+    <input type="text" id="node-input-xaxis" placeholder="Chart X Axis name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-yaxis"><i class="fa"></i>Y Axis</label>
+    <input type="text" id="node-input-yaxis" placeholder="Chart Y Axis name">
+  </div>           
+</script>
+
+<script type="text/x-red" data-help-name="chartjs-horizontal-bar">
+  <p>Inputs</h3>
+  <dl class="message-properties">
+    <dt>Path<span class="property-type">string</span></dt>
+    <dd>This property sets the chart path.</dd>
+  </dl>
+  <dl class="message-properties">
+    <dt>Title<span class="property-type">string</span></dt>
+    <dd>This property sets the chart title.</dd>
+  </dl>
+  <dl class="message-properties">
+    <dt>X Axis<span class="property-type">string</span></dt>
+    <dd>This property sets the X chart name.</dd>
+  </dl> 
+  <dl class="message-properties">
+    <dt>Y Axis<span class="property-type">string</span></dt>
+    <dd>This property sets the Y chart name.</dd>
+  </dl>      
+  <h3>Outputs</h3>
+  <dl class="message-properties">
+     <dt>payload<span class="property-type">object</span></dt>
+     <dd>The payload result object.</dd>
+  </dl>
+  <h3>Error</h3>
+  <dl class="message-properties">
+     <dt>error<span class="property-type">string</span></dt>
+     <dd>The error string.</dd>
+  </dl>
+  <h3>Details</h3>
+  <p></p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType("chartjs-horizontal-bar", {
+        category:'Charts',
+        defaults: {
+            name: {value: ''},
+            path: {value: 'charts'},
+            charttitle: {value: 'Chart title'},
+            xaxis: {value: 'Item'},
+            yaxis: {value: 'Value'}
+        },
+        outputs: 1,
+        inputs: 1,
+        label: function() {
+            return this.name || "Bar Chartjs";
+        },
+        color: 'orange',
+        icon: 'bar_horizontal_chart.png'
+    });
+</script>
+
 <!-- Chart.js: Radar Chart-->
 <script type="text/x-red" data-template-name="chartjs-radar">
   <div class="form-row">

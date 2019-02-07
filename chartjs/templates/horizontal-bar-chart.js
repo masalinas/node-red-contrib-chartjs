@@ -43,12 +43,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
       });
 
-    var canvas = document.getElementById("verticalBarChart");
-    var ctx = canvas.getContext('2d');
-    //var ctx = $("#verticalBarChart");
+    var ctx = $("#horizontalBarChart");
 
     var config = {
-        type: 'bar',
+        type: 'horizontalBar',
         data: {
             labels: [],
             datasets: []
