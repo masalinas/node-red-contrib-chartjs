@@ -15,35 +15,35 @@ npm install node-red-contrib-chartjs --save
 ## Charts implemented
 * Line Chart
 
-![line_chart](https://user-images.githubusercontent.com/1216181/52436121-b99da480-2b13-11e9-8f83-7a133ce20547.png)
+![linea_chart](https://user-images.githubusercontent.com/1216181/52667859-50060780-2f12-11e9-9495-3ad12ad46c4e.png)
 
 * Vertical Bar Chart
 
-![vertical_bar_chart](https://user-images.githubusercontent.com/1216181/52436103-aa1e5b80-2b13-11e9-8fc9-ed277f42f935.png)
+![vertical_chart](https://user-images.githubusercontent.com/1216181/52667877-5c8a6000-2f12-11e9-8514-db1e9904afce.png)
 
 * Horizontal Bar Chart
 
-![horizontal_chart](https://user-images.githubusercontent.com/1216181/52436083-9c68d600-2b13-11e9-88ef-b9aa16c4aed4.png)
+![horizontal_chart](https://user-images.githubusercontent.com/1216181/52667887-62804100-2f12-11e9-9d18-31cf5d7d7f5e.png)
 
 * Pie Chart
 
-![pie_chart](https://user-images.githubusercontent.com/1216181/52436061-8e1aba00-2b13-11e9-98c6-b6a9cccf731a.png)
+![pie_chart](https://user-images.githubusercontent.com/1216181/52667907-6c09a900-2f12-11e9-87ae-63bca2fffb54.png)
 
 * Doughnut Chart
 
-![doughnut_chart](https://user-images.githubusercontent.com/1216181/52436030-81966180-2b13-11e9-8f66-1a75c7b5d142.png)
+![dought_chart](https://user-images.githubusercontent.com/1216181/52667954-88a5e100-2f12-11e9-8f71-d34454640197.png)
 
 * Polar Area Chart
 
-![polar_chart](https://user-images.githubusercontent.com/1216181/52435997-72171880-2b13-11e9-95f5-cb8bbbe2252e.png)
+![polar_chart](https://user-images.githubusercontent.com/1216181/52667940-804da600-2f12-11e9-9e7e-ec90d9aca4fb.png)
 
 * Bubble Chart
 
-![buble_chart](https://user-images.githubusercontent.com/1216181/52435974-6592c000-2b13-11e9-92e4-14e00eb9bf5f.png)
+![bubble_chart](https://user-images.githubusercontent.com/1216181/52667982-9d827480-2f12-11e9-84dd-aeac63709b80.png)
 
 * Radar Chart
 
-![radar_chart](https://user-images.githubusercontent.com/1216181/52435935-4f84ff80-2b13-11e9-8f31-0de28c16e425.png)
+![radar_chart](https://user-images.githubusercontent.com/1216181/52667915-7330b700-2f12-11e9-801e-179dba4707cf.png)
 
 ## Chart configuration
 The **Chart attributes** are:
