@@ -1,4 +1,19 @@
 document.addEventListener("DOMContentLoaded", function(event) {
+   // resize canvas to screen
+   function resizeCanvas() {
+        $("#container").css({
+            "height": window.innerHeight - $("#toolbar").outerHeight(),
+            "width": window.innerWidth
+        });
+    }
+
+    $(window).resize(function() {
+        resizeCanvas();
+    });
+
+    resizeCanvas();
+
+    // implement message topic event    
     var topic = window.location.pathname.replace('/', '');
 
     var socket = io();
@@ -39,9 +54,41 @@ document.addEventListener("DOMContentLoaded", function(event) {
             // refresh chart
             chart.update();
         }
-      });
+    });
 
-    var ctx = $("#doughnutChart");
+    // export event
+    $(".dropdown-menu").on("click", "a", function(event) {
+        // set a new white canvas to be exported
+        destinationCanvas = document.createElement("canvas");
+        destinationCanvas.width = canvas.width;
+        destinationCanvas.height = canvas.height;
+
+        var ctx = destinationCanvas.getContext('2d');
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(canvas, 0, 0);
+
+        var canvasImg = destinationCanvas.toDataURL('image/png', 1.0);
+
+        // export to image or pdf file
+        if (event.target.id == 'image') {
+            var link = document.createElement('a')
+
+            link.download = 'image'
+            link.href = canvasImg
+            link.click()            
+        }
+        else {
+            var doc = new jsPDF('landscape');
+            
+            doc.addImage(canvasImg, 'JPEG', 10, 10, 280, 110 );
+	        doc.save('canvas.pdf');
+        }
+    });
+
+    // get canvas chart
+    var canvas = document.getElementById('chart'); 
+    var ctx = canvas.getContext('2d');
 
     var config = {
         type: 'doughnut',

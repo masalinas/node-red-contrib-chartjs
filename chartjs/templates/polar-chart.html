@@ -3,16 +3,40 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">		
 		
+		<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="polar-chart.css">
 
 		<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="popper.min.js"></script>
+		<script type="text/javascript" src="bootstrap.min.js"></script>
 		<script type="text/javascript" src="Chart.min.js"></script>
 		<script type="text/javascript" src="socket.io.js"></script>
+		<script type="text/javascript" src="jspdf.min.js"></script>
 
 		<script type="text/javascript" src="polar-chart.js"></script>
 		<title>Chart.js samples</title>
 	</header>
 	<body>
-		<canvas id="polarChart" width="100%" height="100%"></canvas>		
+		<nav id="toolbar" class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="#">Chart.js RED</a>
+					
+			<div class="collapse navbar-collapse flex-grow-1 text-right">
+				<ul class="navbar-nav ml-auto flex-nowrap">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Export Chart
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a id='image' class="dropdown-item" href="#">Export to Image</a>
+							<a id='pdf' class="dropdown-item" href="#">Export to Pdf</a>
+						</div>
+					</li>
+				</ul>
+			</div>			
+		</nav>		
+			
+		<div id="container" style="width: 100%; height: 100vh; overflow: auto;">
+			<canvas id="chart"></canvas>
+		</div>				
 	</body>
 </html>

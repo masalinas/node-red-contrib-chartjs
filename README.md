@@ -4,7 +4,9 @@ Chart.js Node-RED nodes
 ![Charts RED Dashboards](https://user-images.githubusercontent.com/1216181/52432061-cddca400-2b09-11e9-9b83-f6cdae1a75b5.png)
 
 ## Description
-This node permit to use **Charts** from [Chart.js](https://www.chartjs.org/) from Node-RED. The objective is create a new node-red path for each chart created, this path could be configured and updated at runtime.
+This nodes package permit to use [Chart.js](https://www.chartjs.org/) **charts** from Node-RED. The objective is create a new url path for each chart created, this url path could be configured and updated at runtime.
+
+For the latest updates see the [CHANGELOG.md](https://github.com/masalinas/node-red-contrib-chartjs/blob/master/CHANGELOG.md)
 
 ## Installation
 ```
@@ -55,16 +57,16 @@ http://localhost:1880/TP01
 * Y Axis: The Y axis label
 * Payload: The chart dataset object
 
-The **Chart Payload attributes** are:
+The **chart payload attributes** are:
 * channel: The channel legend
 * color: The chart color line
 * dataset: The chart dataset
 
-The **Payload attributes** are:
+The **payload dataset attributes** are:
 * x: x axis dataset value
 * y: y axis dataset value
 
-Check the node help to know the Dataset structure for each chart
+Read node help to check the dataset structure for each chart.
 A Line Chart dataset could be like this:
 ```
 {
@@ -102,9 +104,13 @@ A Line Chart dataset could be like this:
 * [cors](https://github.com/expressjs/cors): Node.js CORS middleware
 
 ### Client side
-* [socker.io-client](https://github.com/socketio/socket.io-client): socket.io client side
-* [jquery](https://github.com/jquery/jquery): multipurpose javascript library
-* [Chart.js](https://www.chartjs.org/): Simple yet flexible JavaScript charting for designers & developers
+* [socker.io-client](https://github.com/socketio/socket.io-client): Socket.io client side
+* [jquery](https://github.com/jquery/jquery): Multipurpose javascript library
+* [bootstrap4](https://getbootstrap.com/): Build responsive, mobile-first projects on the web
+* [popper.js](https://popper.js.org/): A kickass library used to manage poppers in the web applications
+* [Chart.js](https://www.chartjs.org/): Simple yet flexible JavaScript charting for designers & 
+developers
+* [jsPDF](https://parall.ax/products/jspdf): The leading HTML5 client solution for generating PDFs 
 
 ## Example
-Under example folder you have all json flows to be imported in your node-red instance and test the node.
+Under example folder you have a json flow to be imported in your node-red instance to test the nodes.
