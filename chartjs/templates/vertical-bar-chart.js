@@ -13,11 +13,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     resizeCanvas();
 
-    // implement message topic event
+    // connect to socket.io server
     var topic = window.location.pathname.replace('/', '');
 
-    var socket = io();
-    
+    //var socket = io();
+    var socket = io.connect(window.location.origin, {query:'topic=' + topic});
+
     socket.on(topic, function(red){
         console.log(red);
 

@@ -13,17 +13,6 @@ module.exports = function(RED) {
 
     var paths = [];
 
-    // configure socket.io server
-    var io = require('socket.io')(server);
-    
-    io.on('connection', function(socket){
-        console.log('a user connected');
-
-        socket.on('disconnect', function(){
-            console.log('user disconnected');
-        });
-    });
-
     // add static folders
     app.use('/', serveStatic(path.join(__dirname, "css")));
     app.use('/', serveStatic(path.join(__dirname, "js")));
@@ -99,6 +88,39 @@ module.exports = function(RED) {
         RED.nodes.createNode(this, config);
 
         var node = this;
+        var conf = config;
+
+        var globalContext = node.context().global;
+
+        var io;
+
+        // configure socket.io server
+        if (globalContext.io)
+            io = globalContext.io;
+        else {
+            io = require('socket.io')(server);
+            globalContext.io = io; 
+        }
+        
+        io.on('connection', function(socket) {
+            // get topic from client conenction
+            var topic = socket.handshake.query.topic;
+
+            if (conf.path == topic) {
+                console.log('a socket connection with id: ' + socket.conn.id + ' from host: ' + socket.conn.remoteAddress + ' and topic:' + topic + ' is created at ' + new Date());
+
+                // publish chart configurations        
+                var config = {title: conf.charttitle, xaxis: conf.xaxis, yaxis : conf.yaxis};
+                var red = {config: config};
+
+                var item = getPath(node.id);
+                io.emit(item.path, red);
+
+                socket.on('disconnect', function(){
+                    console.log('user disconnected');
+                });
+            }
+        });
 
         // load default template
         var template = fs.readFileSync(__dirname + '/templates/line-chart.html', 'utf8');
@@ -123,13 +145,6 @@ module.exports = function(RED) {
         // update expressJS route and update node path
         updatePath(node, config.path);
 
-        // publish chart configurations        
-        var config = {title: config.charttitle, xaxis: config.xaxis, yaxis : config.yaxis};
-        var red = {config: config};
-
-        var item = getPath(node.id);
-        io.emit(item.path, red);
-
         // trigger on flow input
         node.on('input', function(msg) {   
             var item = getPath(node.id);
@@ -148,6 +163,39 @@ module.exports = function(RED) {
         RED.nodes.createNode(this, config);
 
         var node = this;
+        var conf = config;        
+
+        var globalContext = node.context().global;
+
+        var io;
+
+        // configure socket.io server
+        if (globalContext.io)
+            io = globalContext.io;
+        else {
+            io = require('socket.io')(server);
+            globalContext.io = io; 
+        }
+        
+        io.on('connection', function(socket){
+            // get topic from client connection
+            var topic = socket.handshake.query.topic;
+
+            if (conf.path == topic) {
+                console.log('a socket connection with id: ' + socket.conn.id + ' from host: ' + socket.conn.remoteAddress + ' and topic:' + topic + ' is created at ' + new Date());
+
+                // publish chart configurations        
+                var config = {title: conf.charttitle, xaxis: conf.xaxis, yaxis : conf.yaxis};
+                var red = {config: config};
+
+                var item = getPath(node.id);
+                io.emit(item.path, red);
+
+                socket.on('disconnect', function(){
+                    console.log('user disconnected');
+                });
+            }
+        });
 
         // load default template
         var template = fs.readFileSync(__dirname + '/templates/vertical-bar-chart.html', 'utf8');
@@ -172,13 +220,6 @@ module.exports = function(RED) {
         // update expressJS route and update node path
         updatePath(node, config.path);
 
-        // publish chart configurations        
-        var config = {title: config.charttitle, xaxis: config.xaxis, yaxis : config.yaxis};
-        var red = {config: config};
-
-        var item = getPath(node.id);
-        io.emit(item.path, red);
-
         // trigger on flow input
         node.on('input', function(msg) {   
             var item = getPath(node.id);
@@ -197,6 +238,39 @@ module.exports = function(RED) {
         RED.nodes.createNode(this, config);
 
         var node = this;
+        var conf = config;
+
+        var globalContext = node.context().global;
+
+        var io;
+
+        // configure socket.io server
+        if (globalContext.io)
+            io = globalContext.io;
+        else {
+            io = require('socket.io')(server);
+            globalContext.io = io; 
+        }
+        
+        io.on('connection', function(socket){
+            // get topic from client connection
+            var topic = socket.handshake.query.topic;
+
+            if (conf.path == topic) {            
+                console.log('a socket connection with id: ' + socket.conn.id + ' from host: ' + socket.conn.remoteAddress + ' and topic:' + topic + ' is created at ' + new Date());
+
+                // publish chart configurations        
+                var config = {title: conf.charttitle, xaxis: conf.xaxis, yaxis : conf.yaxis};
+                var red = {config: config};
+
+                var item = getPath(node.id);
+                io.emit(item.path, red);
+
+                socket.on('disconnect', function(){
+                    console.log('user disconnected');
+                });
+            }
+        });
 
         // load default template
         var template = fs.readFileSync(__dirname + '/templates/horizontal-bar-chart.html', 'utf8');
@@ -221,13 +295,6 @@ module.exports = function(RED) {
         // update expressJS route and update node path
         updatePath(node, config.path);
 
-        // publish chart configurations        
-        var config = {title: config.charttitle, xaxis: config.xaxis, yaxis : config.yaxis};
-        var red = {config: config};
-
-        var item = getPath(node.id);
-        io.emit(item.path, red);
-
         // trigger on flow input
         node.on('input', function(msg) {   
             var item = getPath(node.id);
@@ -246,6 +313,39 @@ module.exports = function(RED) {
         RED.nodes.createNode(this, config);
 
         var node = this;
+        var conf = config;
+
+        var globalContext = node.context().global;
+
+        var io;
+
+        // configure socket.io server
+        if (globalContext.io)
+            io = globalContext.io;
+        else {
+            io = require('socket.io')(server);
+            globalContext.io = io; 
+        }
+        
+        io.on('connection', function(socket){
+            // get topic from client connection
+            var topic = socket.handshake.query.topic;
+
+            if (conf.path == topic) {            
+                console.log('a socket connection with id: ' + socket.conn.id + ' from host: ' + socket.conn.remoteAddress + ' and topic:' + topic + ' is created at ' + new Date());
+
+                // publish chart configurations        
+                var config = {title: conf.charttitle, xaxis: conf.xaxis, yaxis : conf.yaxis};
+                var red = {config: config};
+
+                var item = getPath(node.id);
+                io.emit(item.path, red);
+
+                socket.on('disconnect', function(){
+                    console.log('user disconnected');
+                });
+            }
+        });
 
         // load default template
         var template = fs.readFileSync(__dirname + '/templates/pie-chart.html', 'utf8');
@@ -270,13 +370,6 @@ module.exports = function(RED) {
         // update expressJS route and update node path
         updatePath(node, config.path);
 
-        // publish chart configurations        
-        var config = {type: config.charttype, title: config.charttitle, xaxis: config.xaxis, yaxis : config.yaxis};
-        var red = {config: config};
-
-        var item = getPath(node.id);
-        io.emit(item.path, red);
-
         // trigger on flow input
         node.on('input', function(msg) {   
             var item = getPath(node.id);
@@ -292,9 +385,40 @@ module.exports = function(RED) {
     }
 
     function chartjsDoughnut(config) {
-        RED.nodes.createNode(this, config);
-
         var node = this;
+        var conf = config;
+
+        var globalContext = node.context().global;
+
+        var io;
+
+        // configure socket.io server
+        if (globalContext.io)
+            io = globalContext.io;
+        else {
+            io = require('socket.io')(server);
+            globalContext.io = io; 
+        }
+        
+        io.on('connection', function(socket) {
+            // get topic from client connection
+            var topic = socket.handshake.query.topic;
+
+            if (conf.path == topic) {
+                console.log('a socket connection with id: ' + socket.conn.id + ' from host: ' + socket.conn.remoteAddress + ' and topic:' + topic + ' is created at ' + new Date());
+
+                // publish chart configurations        
+                var config = {title: conf.charttitle, xaxis: conf.xaxis, yaxis : conf.yaxis};
+                var red = {config: config};
+
+                var item = getPath(node.id);
+                io.emit(item.path, red);
+
+                socket.on('disconnect', function(){
+                    console.log('user disconnected');
+                });
+            }
+        });
 
         // load default template
         var template = fs.readFileSync(__dirname + '/templates/doughnut-chart.html', 'utf8');
@@ -319,13 +443,6 @@ module.exports = function(RED) {
         // update expressJS route and update node path
         updatePath(node, config.path);
 
-        // publish chart configurations        
-        var config = {type: config.charttype, title: config.charttitle, xaxis: config.xaxis, yaxis : config.yaxis};
-        var red = {config: config};
-
-        var item = getPath(node.id);
-        io.emit(item.path, red);
-
         // trigger on flow input
         node.on('input', function(msg) {   
             var item = getPath(node.id);
@@ -341,9 +458,40 @@ module.exports = function(RED) {
     }
 
     function chartjsPolar(config) {
-        RED.nodes.createNode(this, config);
-
         var node = this;
+        var conf = config;
+
+        var globalContext = node.context().global;
+
+        var io;
+
+        // configure socket.io server
+        if (globalContext.io)
+            io = globalContext.io;
+        else {
+            io = require('socket.io')(server);
+            globalContext.io = io; 
+        }
+        
+        io.on('connection', function(socket){
+            // get topic from client connection
+            var topic = socket.handshake.query.topic;
+
+            if (conf.path == topic) {            
+                console.log('a socket connection with id: ' + socket.conn.id + ' from host: ' + socket.conn.remoteAddress + ' and topic:' + topic + ' is created at ' + new Date());
+
+                // publish chart configurations        
+                var config = {title: conf.charttitle, xaxis: conf.xaxis, yaxis : conf.yaxis};
+                var red = {config: config};
+
+                var item = getPath(node.id);
+                io.emit(item.path, red);
+
+                socket.on('disconnect', function(){
+                    console.log('user disconnected');
+                });
+            }
+        });
 
         // load default template
         var template = fs.readFileSync(__dirname + '/templates/polar-chart.html', 'utf8');
@@ -368,13 +516,6 @@ module.exports = function(RED) {
         // update expressJS route and update node path
         updatePath(node, config.path);
 
-        // publish chart configurations        
-        var config = {type: config.charttype, title: config.charttitle, xaxis: config.xaxis, yaxis : config.yaxis};
-        var red = {config: config};
-
-        var item = getPath(node.id);
-        io.emit(item.path, red);
-
         // trigger on flow input
         node.on('input', function(msg) {   
             var item = getPath(node.id);
@@ -390,9 +531,40 @@ module.exports = function(RED) {
     }
 
     function chartjsBubble(config) {
-        RED.nodes.createNode(this, config);
-
         var node = this;
+        var conf = config;
+
+        var globalContext = node.context().global;
+
+        var io;
+
+        // configure socket.io server
+        if (globalContext.io)
+            io = globalContext.io;
+        else {
+            io = require('socket.io')(server);
+            globalContext.io = io; 
+        }
+        
+        io.on('connection', function(socket) {
+            // get topic from client connection
+            var topic = socket.handshake.query.topic;
+
+            if (conf.path == topic) {                        
+                console.log('a socket connection with id: ' + socket.conn.id + ' from host: ' + socket.conn.remoteAddress + ' and topic:' + topic + ' is created at ' + new Date());
+
+                // publish chart configurations        
+                var config = {title: conf.charttitle, xaxis: conf.xaxis, yaxis : conf.yaxis};
+                var red = {config: config};
+
+                var item = getPath(node.id);
+                io.emit(item.path, red);
+
+                socket.on('disconnect', function(){
+                    console.log('user disconnected');
+                });
+            }
+        });
 
         // load default template
         var template = fs.readFileSync(__dirname + '/templates/bubble-chart.html', 'utf8');
@@ -417,13 +589,6 @@ module.exports = function(RED) {
         // update expressJS route and update node path
         updatePath(node, config.path);
 
-        // publish chart configurations        
-        var config = {type: config.charttype, title: config.charttitle, xaxis: config.xaxis, yaxis : config.yaxis};
-        var red = {config: config};
-
-        var item = getPath(node.id);
-        io.emit(item.path, red);
-
         // trigger on flow input
         node.on('input', function(msg) {   
             var item = getPath(node.id);
@@ -442,6 +607,39 @@ module.exports = function(RED) {
         RED.nodes.createNode(this, config);
 
         var node = this;
+        var conf = config;
+
+        var globalContext = node.context().global;
+
+        var io;
+
+        // configure socket.io server
+        if (globalContext.io)
+            io = globalContext.io;
+        else {
+            io = require('socket.io')(server);
+            globalContext.io = io; 
+        }
+        
+        io.on('connection', function(socket){
+            // get topic from client connection
+            var topic = socket.handshake.query.topic;
+
+            if (conf.path == topic) {               
+                console.log('a socket connection with id: ' + socket.conn.id + ' from host: ' + socket.conn.remoteAddress + ' and topic:' + topic + ' is created at ' + new Date());
+
+                // publish chart configurations        
+                var config = {title: conf.charttitle, xaxis: conf.xaxis, yaxis : conf.yaxis};
+                var red = {config: config};
+
+                var item = getPath(node.id);
+                io.emit(item.path, red);
+
+                socket.on('disconnect', function(){
+                    console.log('user disconnected');
+                });
+            }
+        });
 
         // load default template: line.chart
         var template = fs.readFileSync(__dirname + '/templates/radar-chart.html', 'utf8');
@@ -465,13 +663,6 @@ module.exports = function(RED) {
 
         // update expressJS route and update node path
         updatePath(node, config.path);
-
-        // publish chart configurations        
-        var config = {title: config.charttitle, xaxis: config.xaxis, yaxis : config.yaxis};
-        var red = {config: config};
-
-        var item = getPath(node.id);
-        io.emit(item.path, red);
 
         // trigger on flow input
         node.on('input', function(msg) {   

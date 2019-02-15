@@ -15,7 +15,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     var topic = window.location.pathname.replace('/', '');
 
-    var socket = io();
+    // connect to socket.io server
+    var socket = io.connect(window.location.origin, {query:'topic=' + topic});
 
     socket.on(topic, function(red){
         console.log(red);
