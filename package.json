@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-chartjs",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Node-RED Chart.js node",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,6 +11,7 @@
     "chart"
   ],
   "author": "Miguel Salinas",
+  "contributors": ["Andres Carmona"],
   "license": "Apache License, Version 2.0",
   "dependencies": {
     "chart.js": "^2.7.3",

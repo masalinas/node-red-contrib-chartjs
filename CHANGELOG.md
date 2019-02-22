@@ -26,3 +26,11 @@ the socket.io server if not exist in the node-RED instance. The node save the so
 * The node will be able to work with other nodes that use socket.io server too, Of course the global context **io** variable will be reserver by me.
 
  **Enhancements**
+
+  ### 0.4.1: Second Release
+
+**Fixes**
+
+ - Refactor the code to manage socket.io server better. The configuration chart is loades ar first time.
+
+ **Enhancements**
