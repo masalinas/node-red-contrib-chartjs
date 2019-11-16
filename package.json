@@ -11,7 +11,9 @@
     "chart"
   ],
   "author": "Miguel Salinas",
-  "contributors": ["Andres Carmona"],
+  "contributors": [
+    "Andres Carmona"
+  ],
   "license": "Apache License, Version 2.0",
   "dependencies": {
     "chart.js": "^2.7.3",
