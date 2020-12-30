@@ -19,7 +19,7 @@
   <div class="form-row">
     <label for="node-input-yaxis"><i class="fa"></i>Y Axis</label>
     <input type="text" id="node-input-yaxis" placeholder="Chart Y Axis name">
-  </div>           
+  </div>
 </script>
 
 <script type="text/x-red" data-help-name="chartjs-line">
@@ -36,11 +36,11 @@
   <dl class="message-properties">
     <dt>X Axis<span class="property-type">string</span></dt>
     <dd>This property sets the X chart name.</dd>
-  </dl> 
+  </dl>
   <dl class="message-properties">
     <dt>Y Axis<span class="property-type">string</span></dt>
     <dd>This property sets the Y chart name.</dd>
-  </dl>      
+  </dl>
   <h3>Outputs</h3>
   <dl class="message-properties">
      <dt>payload<span class="property-type">object</span></dt>
@@ -52,13 +52,17 @@
      <dd>The error string.</dd>
   </dl>
   <h3>Details</h3>
-  <p><code>msg.payload</code> property contains the dataset. The data structure could be:</p>  
+  <p><code>msg.payload</code> property contains the dataset. The data structure could be:</p>
   <p><code>{
     "channel": "TP01",
     "color": "Red",
-    "dataset": [{"x": 1, "y": 10}, 
-                {"x": 2, "y": 8 },
-                {"x": 3, "y": 15}]
+    "dataset": [{"channel": "Graph 1",
+                 "color": "Blue",
+                 "dataset":[{"x": 1, "y": 10}, {"x": 2, "y": 8 }, {"x": 3, "y": 15}]},
+                {"channel": "Graph 2",
+                 "color": "Green",
+                 "dataset":[{"x": 1, "y": 5}, {"x": 2, "y": 7 }, {"x": 3, "y": 19}]}
+               ]
   }</code>
   </p>
 </script>
@@ -105,7 +109,7 @@
   <div class="form-row">
     <label for="node-input-yaxis"><i class="fa"></i>Y Axis</label>
     <input type="text" id="node-input-yaxis" placeholder="Chart Y Axis name">
-  </div>           
+  </div>
 </script>
 
 <script type="text/x-red" data-help-name="chartjs-vertical-bar">
@@ -122,11 +126,11 @@
   <dl class="message-properties">
     <dt>X Axis<span class="property-type">string</span></dt>
     <dd>This property sets the X chart name.</dd>
-  </dl> 
+  </dl>
   <dl class="message-properties">
     <dt>Y Axis<span class="property-type">string</span></dt>
     <dd>This property sets the Y chart name.</dd>
-  </dl>      
+  </dl>
   <h3>Outputs</h3>
   <dl class="message-properties">
      <dt>payload<span class="property-type">object</span></dt>
@@ -138,11 +142,11 @@
      <dd>The error string.</dd>
   </dl>
   <h3>Details</h3>
-  <p><code>msg.payload</code> property contains the dataset. The data structure could be:</p>  
+  <p><code>msg.payload</code> property contains the dataset. The data structure could be:</p>
   <p><code>{
     "channel": "TP01",
     "color": "Red",
-    "dataset": [{"x": 1, "y": 10}, 
+    "dataset": [{"x": 1, "y": 10},
                 {"x": 2, "y": 8 },
                 {"x": 3, "y": 15}]
   }</code>
@@ -191,7 +195,7 @@
   <div class="form-row">
     <label for="node-input-yaxis"><i class="fa"></i>Y Axis</label>
     <input type="text" id="node-input-yaxis" placeholder="Chart Y Axis name">
-  </div>           
+  </div>
 </script>
 
 <script type="text/x-red" data-help-name="chartjs-horizontal-bar">
@@ -208,11 +212,11 @@
   <dl class="message-properties">
     <dt>X Axis<span class="property-type">string</span></dt>
     <dd>This property sets the X chart name.</dd>
-  </dl> 
+  </dl>
   <dl class="message-properties">
     <dt>Y Axis<span class="property-type">string</span></dt>
     <dd>This property sets the Y chart name.</dd>
-  </dl>      
+  </dl>
   <h3>Outputs</h3>
   <dl class="message-properties">
      <dt>payload<span class="property-type">object</span></dt>
@@ -224,11 +228,11 @@
      <dd>The error string.</dd>
   </dl>
   <h3>Details</h3>
-  <p><code>msg.payload</code> property contains the dataset. The data structure could be:</p>  
+  <p><code>msg.payload</code> property contains the dataset. The data structure could be:</p>
   <p><code>{
     "channel": "TP01",
     "color": "Red",
-    "dataset": [{"x": 1, "y": 10}, 
+    "dataset": [{"x": 1, "y": 10},
                 {"x": 2, "y": 8 },
                 {"x": 3, "y": 15}]
   }</code>
@@ -277,7 +281,7 @@
   <div class="form-row">
     <label for="node-input-yaxis"><i class="fa"></i>Y Axis</label>
     <input type="text" id="node-input-yaxis" placeholder="Chart Y Axis name">
-  </div>           
+  </div>
 </script>
 
 <script type="text/x-red" data-help-name="chartjs-pie">
@@ -294,11 +298,11 @@
   <dl class="message-properties">
     <dt>X Axis<span class="property-type">string</span></dt>
     <dd>This property sets the X chart name.</dd>
-  </dl> 
+  </dl>
   <dl class="message-properties">
     <dt>Y Axis<span class="property-type">string</span></dt>
     <dd>This property sets the Y chart name.</dd>
-  </dl>      
+  </dl>
   <h3>Outputs</h3>
   <dl class="message-properties">
      <dt>payload<span class="property-type">object</span></dt>
@@ -310,7 +314,7 @@
      <dd>The error string.</dd>
   </dl>
   <h3>Details</h3>
-  <p><code>msg.payload</code> property contains the dataset. The data structure could be:</p>  
+  <p><code>msg.payload</code> property contains the dataset. The data structure could be:</p>
   <p><code>{
     "channel": "POB",
     "color": ["Red", "Yellow", "Blue"],
@@ -364,11 +368,11 @@
   <div class="form-row">
     <label for="node-input-yaxis"><i class="fa"></i>Y Axis</label>
     <input type="text" id="node-input-yaxis" placeholder="Chart Y Axis name">
-  </div>           
+  </div>
 </script>
 
 <script type="text/x-red" data-help-name="chartjs-doughnut">
-  <p>Doughnut Chart.</p>  
+  <p>Doughnut Chart.</p>
   <p>Inputs</h3>
   <dl class="message-properties">
     <dt>Path<span class="property-type">string</span></dt>
@@ -381,11 +385,11 @@
   <dl class="message-properties">
     <dt>X Axis<span class="property-type">string</span></dt>
     <dd>This property sets the X chart name.</dd>
-  </dl> 
+  </dl>
   <dl class="message-properties">
     <dt>Y Axis<span class="property-type">string</span></dt>
     <dd>This property sets the Y chart name.</dd>
-  </dl>      
+  </dl>
   <h3>Outputs</h3>
   <dl class="message-properties">
      <dt>payload<span class="property-type">object</span></dt>
@@ -397,7 +401,7 @@
      <dd>The error string.</dd>
   </dl>
   <h3>Details</h3>
-  <p><code>msg.payload</code> property contains the dataset. The data structure could be:</p>  
+  <p><code>msg.payload</code> property contains the dataset. The data structure could be:</p>
   <p><code>{
     "channel": "POB",
     "color": ["Red", "Yellow", "Blue"],
@@ -451,11 +455,11 @@
   <div class="form-row">
     <label for="node-input-yaxis"><i class="fa"></i>Y Axis</label>
     <input type="text" id="node-input-yaxis" placeholder="Chart Y Axis name">
-  </div>           
+  </div>
 </script>
 
 <script type="text/x-red" data-help-name="chartjs-polar">
-  <p>Polar Area Chart.</p>  
+  <p>Polar Area Chart.</p>
   <p>Inputs</h3>
   <dl class="message-properties">
     <dt>Path<span class="property-type">string</span></dt>
@@ -468,11 +472,11 @@
   <dl class="message-properties">
     <dt>X Axis<span class="property-type">string</span></dt>
     <dd>This property sets the X chart name.</dd>
-  </dl> 
+  </dl>
   <dl class="message-properties">
     <dt>Y Axis<span class="property-type">string</span></dt>
     <dd>This property sets the Y chart name.</dd>
-  </dl>      
+  </dl>
   <h3>Outputs</h3>
   <dl class="message-properties">
      <dt>payload<span class="property-type">object</span></dt>
@@ -484,7 +488,7 @@
      <dd>The error string.</dd>
   </dl>
   <h3>Details</h3>
-  <p><code>msg.payload</code> property contains the dataset. The data structure could be:</p>  
+  <p><code>msg.payload</code> property contains the dataset. The data structure could be:</p>
   <p><code>{
     "channel": "POB",
     "color": ["Red", "Yellow", "Blue"],
@@ -538,11 +542,11 @@
   <div class="form-row">
     <label for="node-input-yaxis"><i class="fa"></i>Y Axis</label>
     <input type="text" id="node-input-yaxis" placeholder="Chart Y Axis name">
-  </div>           
+  </div>
 </script>
 
 <script type="text/x-red" data-help-name="chartjs-bubble">
-  <p>Bubble Chart.</p>  
+  <p>Bubble Chart.</p>
   <p>Inputs</h3>
   <dl class="message-properties">
     <dt>Path<span class="property-type">string</span></dt>
@@ -555,11 +559,11 @@
   <dl class="message-properties">
     <dt>X Axis<span class="property-type">string</span></dt>
     <dd>This property sets the X chart name.</dd>
-  </dl> 
+  </dl>
   <dl class="message-properties">
     <dt>Y Axis<span class="property-type">string</span></dt>
     <dd>This property sets the Y chart name.</dd>
-  </dl>      
+  </dl>
   <h3>Outputs</h3>
   <dl class="message-properties">
      <dt>payload<span class="property-type">object</span></dt>
@@ -571,7 +575,7 @@
      <dd>The error string.</dd>
   </dl>
   <h3>Details</h3>
-  <p><code>msg.payload</code> property contains the dataset. The data structure could be:</p>  
+  <p><code>msg.payload</code> property contains the dataset. The data structure could be:</p>
   <p><code>{
     "channel": "POB",
     "color": "Blue",
@@ -625,11 +629,11 @@
   <div class="form-row">
     <label for="node-input-yaxis"><i class="fa"></i>Y Axis</label>
     <input type="text" id="node-input-yaxis" placeholder="Chart Y Axis name">
-  </div>           
+  </div>
 </script>
 
 <script type="text/x-red" data-help-name="chartjs-radar">
-  <p>Radar Chart.</p>  
+  <p>Radar Chart.</p>
   <p>Inputs</h3>
   <dl class="message-properties">
     <dt>Path<span class="property-type">string</span></dt>
@@ -642,11 +646,11 @@
   <dl class="message-properties">
     <dt>X Axis<span class="property-type">string</span></dt>
     <dd>This property sets the X chart name.</dd>
-  </dl> 
+  </dl>
   <dl class="message-properties">
     <dt>Y Axis<span class="property-type">string</span></dt>
     <dd>This property sets the Y chart name.</dd>
-  </dl>      
+  </dl>
   <h3>Outputs</h3>
   <dl class="message-properties">
      <dt>payload<span class="property-type">object</span></dt>
@@ -657,7 +661,7 @@
      <dt>error<span class="property-type">string</span></dt>
      <dd>The error string.</dd>
   </dl>
-  <h3>Details</h3>  <p><code>msg.payload</code> property contains the dataset. The data structure could be:</p>  
+  <h3>Details</h3>  <p><code>msg.payload</code> property contains the dataset. The data structure could be:</p>
   <p><code>{
     "channel": "POB",
     "color": "Green",
@@ -666,7 +670,7 @@
                 {"x": "C", "y": 30}
     ]
   }</code>
-  </p>  
+  </p>
 </script>
 
 <script type="text/javascript">

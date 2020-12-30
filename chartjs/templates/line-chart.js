@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     });
 
     resizeCanvas();
-    
+
     // implement message topic event
     var topic = window.location.pathname.replace('/', '');
 
@@ -24,30 +24,46 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         // update chart dataset
         if (red.msg !== undefined) {
-            var dataset = {
-                label: red.msg.payload.channel,                        
-                backgroundColor: red.msg.payload.color,
-                borderColor: red.msg.payload.color,
-                data: [],
-                fill: false
-            };
+            if (!Array.isArray(red.msg.payload)) {
+              var payload = [];
+              payload.push(red.msg.payload);
 
+              red.msg.payload = payload;
+            }
+
+            // initialize graph labels datasets
+            // NOTES: the several series must have the same x axis distribution
+            // get the first serial x axis
             chart.config.data.labels = [];
+
+            red.msg.payload[0].dataset.forEach(item => {
+                chart.config.data.labels.push(item.x);
+            });
+
             chart.config.data.datasets = [];
 
-            red.msg.payload.dataset.forEach(item => {
-                chart.config.data.labels.push(item.x);
-                dataset.data.push(item.y);
+            red.msg.payload.forEach((serie, i) => {
+              var dataset = {
+                  label: serie.channel,
+                  backgroundColor: serie.color,
+                  borderColor: serie.color,
+                  data: [],
+                  fill: false
+              };
+
+              serie.dataset.forEach(item => {                  
+                  dataset.data.push(item.y);
+              });
+
+              chart.config.data.datasets.push(dataset);
             });
-                    
-            chart.config.data.datasets.push(dataset);
 
             // refresh chart
             chart.update();
         }
 
         // update chart configuration
-        if (red.config !== undefined) {            
+        if (red.config !== undefined) {
             config.options.title.text = red.config.title;
             config.options.scales['xAxes'][0].scaleLabel.labelString = red.config.xaxis;
             config.options.scales['yAxes'][0].scaleLabel.labelString = red.config.yaxis;
@@ -77,18 +93,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
             link.download = 'image'
             link.href = canvasImg
-            link.click()            
+            link.click()
         }
         else {
             var doc = new jsPDF('landscape');
-            
+
             doc.addImage(canvasImg, 'JPEG', 10, 10, 280, 110 );
 	        doc.save('canvas.pdf');
         }
     });
 
     // get canvas chart
-    var canvas = document.getElementById('chart'); 
+    var canvas = document.getElementById('chart');
     var ctx = canvas.getContext('2d');
 
     // configure chart
@@ -125,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     display: true,
                     ticks: {
                         beginAtZero: true
-                    },                     
+                    },
                     scaleLabel: {
                         display: true,
                         labelString: 'Value'
@@ -139,5 +155,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
     Chart.defaults.global.defaultFontColor = 'grey';
     Chart.defaults.global.defaultFontSize = 16;
 
-    var chart = new Chart(ctx, config);	
+    var chart = new Chart(ctx, config);
 });

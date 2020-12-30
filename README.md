@@ -17,6 +17,9 @@ npm install node-red-contrib-chartjs --save
 
 ![linea_chart](https://user-images.githubusercontent.com/1216181/52667859-50060780-2f12-11e9-9495-3ad12ad46c4e.png)
 
+* Multi Line Chart
+![MultiLinearChart](https://user-images.githubusercontent.com/1216181/103363927-af487300-4abc-11eb-90fc-1c50f9743e2e.png)
+
 * Vertical Bar Chart
 
 ![vertical_chart](https://user-images.githubusercontent.com/1216181/52667877-5c8a6000-2f12-11e9-8514-db1e9904afce.png)
@@ -67,7 +70,58 @@ The **payload dataset attributes** are:
 * y: y axis dataset value
 
 Read node help to check the dataset structure for each chart.
-A Line Chart dataset could be like this:
+The Line Charts dataset could be multi serial graphs like this:
+```
+[{"channel": "Population",
+  "color": "Blue",
+  "dataset": [{
+      "x": "Europe",
+      "y": 741
+  },
+  {
+      "x": "Australia",
+      "y": 24
+  },
+  {
+      "x": "Africa",
+      "y": 1.2
+  },
+  {
+      "x": "America",
+      "y": 325
+  },
+  {
+      "x": "Asia",
+      "y": 4.4
+  }]},
+  {"channel": "Economy",
+    "color": "Green",
+    "dataset": [{
+        "x": "Europe",
+        "y": 12
+    },
+    {
+        "x": "Australia",
+        "y": 13
+    },
+    {
+        "x": "Africa",
+        "y": 3
+    },
+    {
+        "x": "America",
+        "y": 22
+    },
+    {
+        "x": "Asia",
+        "y": 18
+    }]}
+]                
+```
+
+**NOTE: The new multiserial linear chart implementation is compatible with the previous one versions**
+
+The rest of the charts dataset are not multiserial graphs. An example could be like this:
 ```
 {
     "channel": "Population",
@@ -94,7 +148,7 @@ A Line Chart dataset could be like this:
             "y": 4.4
         }
     ]
-}
+}               
 ```
 
 ## Dependencies
@@ -108,9 +162,9 @@ A Line Chart dataset could be like this:
 * [jquery](https://github.com/jquery/jquery): Multipurpose javascript library
 * [bootstrap4](https://getbootstrap.com/): Build responsive, mobile-first projects on the web
 * [popper.js](https://popper.js.org/): A kickass library used to manage poppers in the web applications
-* [Chart.js](https://www.chartjs.org/): Simple yet flexible JavaScript charting for designers & 
+* [Chart.js](https://www.chartjs.org/): Simple yet flexible JavaScript charting for designers &
 developers
-* [jsPDF](https://parall.ax/products/jspdf): The leading HTML5 client solution for generating PDFs 
+* [jsPDF](https://parall.ax/products/jspdf): The leading HTML5 client solution for generating PDFs
 
 ## Example
 Under example folder you have a json flow to be imported in your node-red instance to test the nodes.

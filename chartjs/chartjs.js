@@ -321,7 +321,7 @@ module.exports = function (RED) {
         RED.nodes.createNode(this, config);
 
         var node = this;
- 
+
         // load default template
         var template = fs.readFileSync(__dirname + '/templates/polar-chart.html', 'utf8');
 
@@ -361,9 +361,9 @@ module.exports = function (RED) {
 
     function chartjsBubble(config) {
         RED.nodes.createNode(this, config);
-        
+
         var node = this;
- 
+
         // load default template
         var template = fs.readFileSync(__dirname + '/templates/bubble-chart.html', 'utf8');
 
