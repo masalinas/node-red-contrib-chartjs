@@ -23,9 +23,9 @@ module.exports = function (RED) {
     }
 
     // add static folders
-    app.use('/', serveStatic(path.join(__dirname, "css")));
-    app.use('/', serveStatic(path.join(__dirname, "js")));
-    app.use('/', serveStatic(path.join(__dirname, "templates")));
+    app.use('/chartjs/css', serveStatic(path.join(__dirname, "css")));
+    app.use('/chartjs/js', serveStatic(path.join(__dirname, "js")));
+    app.use('/chartjs/templates', serveStatic(path.join(__dirname, "templates")));
 
     io.on('connection', function (socket) {
         // get topic from client connection
