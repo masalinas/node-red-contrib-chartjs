@@ -16,7 +16,7 @@
 
  - Add Bootstrap to manage the export chart in image png or pdf format
 
- ### 0.4.0: Second Release
+### 0.4.0: Second Release
 
 **Fixes**
 
@@ -27,10 +27,18 @@ the socket.io server if not exist in the node-RED instance. The node save the so
 
  **Enhancements**
 
-  ### 0.4.1: Second Release
+### 0.4.1: Second Release
 
 **Fixes**
 
  - Refactor the code to manage socket.io server better. The configuration chart is loades ar first time.
 
  **Enhancements**
+
+### 0.5.2: Second Release
+**Fixes**
+
+
+ **Enhancements**
+
+ - Multiserial configuration for the line charts. You could inject several series on the same graph
